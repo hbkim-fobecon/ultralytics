@@ -19,7 +19,7 @@ TEST_NAME = ''
 
 
 task = Task.init(
-        project_name=os.path.join(TAG_PLAN, TAG_TASK, TAG_TARGET, TEST_NAME),
+        project_name=os.path.join(TAG_PLAN, TAG_TASK, TAG_TARGET),
         task_name=TEST_NAME,
         task_type=Task.TaskTypes.training  # 또는 inference, data_processing 등
     )
