@@ -3,8 +3,8 @@ import os
 from ultralytics import YOLO
 from clearml import Task
 
-MODEL_FNAME_OR_FPATH = 'yolo11n.pt'
-MODEL_BASENAME = 'yolo11n'
+MODEL_FNAME_OR_FPATH = 'yolo11l.pt'
+MODEL_BASENAME = 'yolo11l'
 DATASET = 'posco_under_windoor_winsldr_onlyinst_w320i80_251016.yaml'
 
 #----------------------------------------------------------#
@@ -13,7 +13,7 @@ TAG_PLAN = 'under'  # under/unit/building ...
 TAG_TASK = 'det'  # det/seg ...
 TAG_TARGET = 'windoor'  # windoor/jubu/room/wall/core ...
 
-TEST_NAME = ''
+TEST_NAME = 'TRAIN_251021_B'
 
 #----------------------------------------------------------#
 
@@ -32,10 +32,10 @@ model = YOLO(f"{MODEL_BASENAME}.yaml").load(MODEL_FNAME_OR_FPATH)  # build from 
 # Train the model
 results = model.train(
     data=DATASET, 
-    epochs=1, 
-    imgsz=320, 
-    batch=128,
+    epochs=100, 
+    imgsz=960, 
+    batch=64,
     workers=8,
-    project='TAG_PLAN',
+    project=f'{TAG_PLAN}',
     name=f'{TAG_TARGET}/{TEST_NAME}',
     )

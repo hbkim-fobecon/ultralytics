@@ -5,7 +5,7 @@ from clearml import Task
 
 MODEL_FNAME_OR_FPATH = 'yolo11n.pt'
 MODEL_BASENAME = 'yolo11n'
-DATASET = 'posco_under_windoor_winsldr_onlyinst_w320i80_251016.yaml'
+DATASET = 'posco_under_windoor_winsldr_onlyinst_w640i128_251016.yaml'
 
 #----------------------------------------------------------#
 
@@ -13,7 +13,7 @@ TAG_PLAN = 'under'  # under/unit/building ...
 TAG_TASK = 'det'  # det/seg ...
 TAG_TARGET = 'windoor'  # windoor/jubu/room/wall/core ...
 
-TEST_NAME = ''
+TEST_NAME = 'TRAIN_251021_A'
 
 #----------------------------------------------------------#
 
@@ -32,10 +32,10 @@ model = YOLO(f"{MODEL_BASENAME}.yaml").load(MODEL_FNAME_OR_FPATH)  # build from 
 # Train the model
 results = model.train(
     data=DATASET, 
-    epochs=1, 
-    imgsz=320, 
+    epochs=100, 
+    imgsz=640, 
     batch=128,
     workers=8,
-    project='TAG_PLAN',
+    project=f'{TAG_PLAN}',
     name=f'{TAG_TARGET}/{TEST_NAME}',
     )
