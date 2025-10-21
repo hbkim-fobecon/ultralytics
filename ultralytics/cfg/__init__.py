@@ -412,7 +412,7 @@ def get_save_dir(args: SimpleNamespace, name: str = None) -> Path:
         from ultralytics.utils.files import increment_path
 
         if args.project:
-            project = ((ROOT.parent / "tests/tmp/runs" if TESTS_RUNNING else RUNS_DIR) / args.project)
+            project = ((ROOT.parent / "tests/tmp/runs" if TESTS_RUNNING else RUNS_DIR) / args.project) / args.task
         else:
             project = (ROOT.parent / "tests/tmp/runs" if TESTS_RUNNING else RUNS_DIR) / args.task
         name = name or args.name or f"{args.mode}"
